@@ -1,15 +1,46 @@
 @extends('layouts.frontend')
-  <head>
+<head>
     <link href="{{ asset('/css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('/js/home.js') }}" rel="stylesheet">
     {{-- icon --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    .slide-container {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .slide {
+      min-width: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    </style>
   </head>
 @section('content')
 <body>
+  <div class="slide-container">
+    <div class="slide">
+      <img src="{{ asset('Gambar/border1.jpg')}}" alt="Slide 1">
+    </div>
+    <div class="slide">
+      <img src="{{ asset('Gambar/border3.jpg')}}" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <img src="{{ asset('Gambar/border4.jpg')}}" alt="Slide 3">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script src="script.js"></script>
 <div class="container-fluid" style="text-align: center;justify-content: center;">
       <div class="wrapper">
+    
           <div class="judul2 fixed-top" style="z-index: 0;">
             <h1>Apparel</h1>
             <div class="links">
@@ -53,6 +84,8 @@
               </div>
               @endforeach
             </div>
+
+
 
             <div class="view_wrap grid-view" style="display: none;">
               @foreach ($products as $product)
@@ -129,9 +162,9 @@
 
             @endforeach
           </div>
-
         </div>
   </div>
+
   
 <script>
 var li_links = document.querySelectorAll(".links ul li");
@@ -161,6 +194,31 @@ li_links.forEach(function(link){
 		}
 	})
 })
+const slideContainer = document.querySelector('.slide-container');
+      const slides = document.querySelectorAll('.slide');
+
+      let slideIndex = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.style.transform = `translateX(${100 * (i - index)}%)`;
+        });
+      }
+
+      function nextSlide() {
+        slideIndex = (slideIndex + 1) % slides.length;
+        showSlide(slideIndex);
+      }
+
+      function prevSlide() {
+        slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+        showSlide(slideIndex);
+      }
+
+      setInterval(nextSlide, 5000); // Ganti slide setiap 5 detik
+
+      showSlide(slideIndex);
+      
     </script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

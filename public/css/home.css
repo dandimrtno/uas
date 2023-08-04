@@ -270,7 +270,8 @@ body.dark .view_item{
 @media screen and (max-width: 600px) {
 
     span.logo.navLogo{
-        display: none;
+        width: 120px;
+        height: 80px;
     }
 
 /* start darkmode */
